@@ -1,7 +1,7 @@
 services:
   landing-backend:
     container_name: landing-backend
-    build: ./backend
+    build: landing:latest
     ports:
       - "8082:8082"
     restart: always
