@@ -1,0 +1,59 @@
+name: Landing Deploy
+run-name: ${{ github.actor }} is deploying his new CV🔥🔥🔥
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Build Docker image
+        run: |
+          docker build -t landing:latest .
+
+      - name: Save Docker image
+        run: |
+          docker save landing:latest | gzip > landing.tar.gz
+
+      - name: Copy files to server
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "landing.tar.gz"
+          target: "/home/${{ secrets.SSH_USER }}/landing/"
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /home/${{ secrets.SSH_USER }}/landing/
+            
+            # Load the new image
+            docker load < landing.tar.gz
+            
+            # Stop and remove old container if exists
+            docker stop landing || true
+            docker rm landing || true
+            
+            # Run new container
+            docker run -d \
+              --name landing \
+              --restart unless-stopped \
+              -p 80:8080 \
+              landing:latest
+            
+            # Clean up
+            rm landing.tar.gz
+            
+            # Remove old images to save space
+            docker image prune -f
