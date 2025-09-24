@@ -1,15 +1,15 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-from util import *
+from fastapi import FastAPI, Form
+
+from util import send_mail
 
 app = FastAPI()
 
-class ContactForm(BaseModel):
-    name: str
-    email: str
-    message: str
 
 @app.post("/api/send-mail")
-def post_send_mail(data: ContactForm):
-    send_mail(data.name, data.email, data.message)
+def post_send_mail(
+        name: str = Form(...),
+        email: str = Form(...),
+        message: str = Form(...)
+):
+    send_mail(name, email, message)
     return {"status": "ok"}
