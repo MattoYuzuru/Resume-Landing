@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Frontend/Backend разработчик с опытом создания масштабируемых веб-приложений. Специализация: React, Node.js, TypeScript">
+    <title>Матвей Рябушкин - Backend / Frontend Developer</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="header__container">
+        <div class="header__logo">
+            <div class="header__avatar">
+                <span class="header__initials">MR</span>
+            </div>
+            <div class="header__info">
+                <div class="header__name">Матвей Рябушкин</div>
+                <div class="header__role">Backend / Frontend Developer</div>
+            </div>
+        </div>
+
+        <nav class="header__nav">
+            <a href="#hero" class="header__nav-link">Главная</a>
+            <a href="#skills" class="header__nav-link">Навыки</a>
+            <a href="#projects" class="header__nav-link">Проекты</a>
+            <a href="#experience" class="header__nav-link">Опыт</a>
+            <a href="#contacts" class="header__nav-link">Контакты</a>
+            <a href="#contacts" class="header__cta">Связаться</a>
+        </nav>
+    </div>
+</header>
+
+<main class="main">
+    <!-- Hero -->
+    <section id="hero" class="hero">
+        <div class="hero__container">
+            <div class="hero__content">
+                <h1 class="hero__title">Создаю современные веб-приложения</h1>
+                <p class="hero__description">
+                    Студент и backend-разработчик. Интересуюсь архитектурой сервисов,
+                    базами данных и развиваюсь в написании чистого, понятного кода.
+                </p>
+                <div class="hero__actions">
+                    <a href="#contacts" class="hero__cta hero__cta--primary">Обсудить проект</a>
+                    <a href="#projects" class="hero__cta hero__cta--secondary">Посмотреть работы</a>
+                </div>
+            </div>
+
+            <div class="hero__preview">
+                <div class="hero__project-card">
+                    <div class="hero__project-image">
+                        <div class="hero__project-placeholder">MyTube</div>
+                    </div>
+                    <div class="hero__project-info">
+                        <div class="hero__project-title">MyTube</div>
+                        <div class="hero__project-stack">Spring • React • PostgreSQL • YC S3 • DASH • FFmpeg</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Скилы -->
+    <section id="skills" class="skills">
+        <div class="skills__container">
+            <div class="skills__header">
+                <h2 class="skills__title">Технические навыки</h2>
+                <p class="skills__subtitle">
+                    Опыт работы с современным стеком технологий для разработки высоконагруженных приложений
+                </p>
+            </div>
+
+            <div class="skills__grid">
+                <div class="skills__category">
+                    <h3 class="skills__category-title">Backend</h3>
+                    <div class="skills__list">
+                        <div class="skills__item">
+                            <div class="skills__name">Java</div>
+                            <div class="skills__level">Advanced</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Spring Boot</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Hibernate</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Spring Security</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">JUnit / Mockito</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills__category">
+                    <h3 class="skills__category-title">Database</h3>
+                    <div class="skills__list">
+                        <div class="skills__item">
+                            <div class="skills__name">PostgreSQL</div>
+                            <div class="skills__level">Advanced</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">MongoDB</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Redis</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Alembic</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">S3</div>
+                            <div class="skills__level">Beginner</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills__category">
+                    <h3 class="skills__category-title">DevOps & Tools</h3>
+                    <div class="skills__list">
+                        <div class="skills__item">
+                            <div class="skills__name">Git</div>
+                            <div class="skills__level">Advanced</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Docker</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Nginx</div>
+                            <div class="skills__level">Beginner</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">GitHub CI/CD</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Linux</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills__category">
+                    <h3 class="skills__category-title">Frontend</h3>
+                    <div class="skills__list">
+                        <div class="skills__item">
+                            <div class="skills__name">HTML + CSS</div>
+                            <div class="skills__level">Intermediate</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">React</div>
+                            <div class="skills__level">Beginner</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Next.js</div>
+                            <div class="skills__level">Beginner</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Vue.js</div>
+                            <div class="skills__level">Beginner</div>
+                        </div>
+                        <div class="skills__item">
+                            <div class="skills__name">Streamlit</div>
+                            <div class="skills__level">Beginner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="projects">
+        <div class="projects__container">
+            <h2 class="projects__title">Проекты</h2>
+
+            <div class="projects__grid">
+                <article class="projects__card">
+                    <div class="projects__image">
+                        <div class="projects__placeholder">MyTube</div>
+                    </div>
+                    <div class="projects__content">
+                        <h3 class="projects__name">Видеоплатформа и социальная сеть</h3>
+                        <p class="projects__description">Аналог YouTube и пара удобных фич</p>
+                        <div class="projects__stack">Spring • React • PostgreSQL • YC S3 • DASH • FFmpeg</div>
+                        <div class="projects__links">
+                            <a href="https://mytube.keykomi.com" class="projects__link">Try</a>
+                            <a href="https://github.com/MattoYuzuru/MyTube" class="projects__link">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <div class="projects__image">
+                        <div class="projects__placeholder">KeykoMi Lib</div>
+                    </div>
+                    <div class="projects__content">
+                        <h3 class="projects__name">Блог</h3>
+                        <p class="projects__description">Мой веб-блог, вместо ТГ-канала</p>
+                        <div class="projects__stack">Spring • Next.js • JWT • S3</div>
+                        <div class="projects__links">
+                            <a href="https://blog.keykomi.com" class="projects__link">Try</a>
+                            <a href="https://github.com/MattoYuzuru/web-blog" class="projects__link">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <div class="projects__image">
+                        <div class="projects__placeholder">News Aggregator</div>
+                    </div>
+                    <div class="projects__content">
+                        <h3 class="projects__name">Новостной агрегатор на чистой Джаве</h3>
+                        <p class="projects__description">Консольное приложение, парсит новости из пула ресурсов, делает
+                            саммари и собирает статистику.</p>
+                        <div class="projects__stack">Java • AI • Postgresql • Spring Data JPA • JUnit+Mockito</div>
+                        <div class="projects__links">
+                            <a href="https://github.com/MattoYuzuru/News-Aggregator-HSE-v1" class="projects__link">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <div class="projects__image">
+                        <div class="projects__placeholder">Student Performance Factors Analysis</div>
+                    </div>
+                    <div class="projects__content">
+                        <h3 class="projects__name">Факторы успеваемости студентов</h3>
+                        <p class="projects__description">Финального проект 1-ого курса по аналитике в ВУЗе</p>
+                        <div class="projects__stack">Streamlit • FastAPI • Scikit-learn • Numpy • Pandas • Matplotlib
+                        </div>
+                        <div class="projects__links">
+                            <a href="#" class="projects__link">Try</a>
+                            <a href="https://github.com/MattoYuzuru/student_performance_factors_analysis"
+                               class="projects__link">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Таймлайн опыта -->
+    <section id="experience" class="experience">
+        <div class="experience__container">
+            <h2 class="experience__title">Опыт</h2>
+
+            <div class="experience__timeline">
+                <div class="experience__item">
+                    <div class="experience__period">2019 — 2024</div>
+                    <div class="experience__content">
+                        <h3 class="experience__company">Студент — Московская Школа Программистов</h3>
+                        <p class="experience__description">
+                            Обучался основным инструментам разработчика. Из ЯП изучал на курсах Python, C#, C++.
+                            В качестве финального проекта в команде создали сервис по аренде квартир Homer, где я был
+                            разработчиком. <br>
+                            Стек: Python, Django, Postgres, Docker.
+                        </p>
+                        <div class="experience__achievements">
+                            <div class="experience__achievement">Внедрил аутентификацию и сделал фичу бронирования
+                                объектов.
+                            </div>
+                            <div class="experience__achievement">Задеплоил продукт на сервер.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience__item">
+                    <div class="experience__period">Июль 2025</div>
+                    <div class="experience__content">
+                        <h3 class="experience__company">Java Backend Developer — Учебная практика от Т-Банка</h3>
+                        <p class="experience__description">
+                            Создание продукта с нуля. Проектирование архитектуры,
+                            разработка главных backend компонентов продукта.
+                        </p>
+                        <div class="experience__achievements">
+                            <div class="experience__achievement">Общался с фронтенд-разработчиками и помогал
+                                синхронизировать работу фронта и бэкенда.
+                            </div>
+                            <div class="experience__achievement">Помогал команде с кодом и обсуждением архитектурных
+                                решений, делился идеями и решениями.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="contacts__container">
+            <h2 class="contacts__title">Контакты</h2>
+
+            <div class="contacts__content">
+                <div class="contacts__form-section">
+                    <form class="contacts__form" method="POST" action="/api/send-mail">
+                        <div class="contacts__field">
+                            <label for="name" class="contacts__label">Имя</label>
+                            <input type="text" id="name" name="name" class="contacts__input" placeholder="Ваше имя"
+                                   required>
+                        </div>
+
+                        <div class="contacts__field">
+                            <label for="email" class="contacts__label">Email</label>
+                            <input type="email" id="email" name="email" class="contacts__input"
+                                   placeholder="email@example.com" required>
+                        </div>
+
+                        <div class="contacts__field">
+                            <label for="message" class="contacts__label">Сообщение</label>
+                            <textarea id="message" name="message" class="contacts__textarea"
+                                      placeholder="Расскажите о вашем проекте" required></textarea>
+                        </div>
+
+                        <button type="submit" class="contacts__submit">Отправить сообщение</button>
+                    </form>
+                </div>
+
+                <div class="contacts__info">
+                    <div class="contacts__card">
+                        <h3 class="contacts__card-title">Прямая связь</h3>
+                        <div class="contacts__links">
+                            <a href="mailto:matvei.riabushkin@yandex.ru" class="contacts__link">
+                                <span class="contacts__link-text">matvei.riabushkin@yandex.ru</span>
+                            </a>
+                            <a href="https://github.com/MattoYuzuru" class="contacts__link">
+                                <span class="contacts__link-text">GitHub</span>
+                            </a>
+                            <a href="https://t.me/Keyko_Mi" class="contacts__link">
+                                <span class="contacts__link-text">Telegram</span>
+                            </a>
+                        </div>
+                        <div class="contacts__note">
+                            Буду рад откликнуться на стажировки или предложения для начинающих разработчиков.
+                            Стараюсь отвечать быстро.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__content">
+            <span class="footer__copyright">© 2025 Матвей Рябушкин</span>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
