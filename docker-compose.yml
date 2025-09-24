@@ -1,0 +1,7 @@
+services:
+  landing-backend:
+    container_name: landing-backend
+    build: ./backend
+    ports:
+      - "8082:8082"
+    restart: always

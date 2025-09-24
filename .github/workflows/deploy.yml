@@ -38,22 +38,15 @@ jobs:
           script: |
             cd /home/${{ secrets.SSH_USER }}/landing/
             
-            # Load the new image
+            # Загружаем образ
             docker load < landing.tar.gz
             
-            # Stop and remove old container if exists
-            docker stop landing || true
-            docker rm landing || true
-            
-            # Run new container
-            docker run -d \
-              --name landing \
-              --restart unless-stopped \
-              -p 80:8080 \
-              landing:latest
-            
-            # Clean up
+            # Чистим старый тар
             rm landing.tar.gz
             
-            # Remove old images to save space
+            # Перезапускаем через docker-compose
+            docker compose down
+            docker compose up -d
+
+            # Убираем старые dangling-образы
             docker image prune -f
