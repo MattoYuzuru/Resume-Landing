@@ -17,7 +17,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t landing:latest . -f backend/Dockerfile
+          docker build -t landing:latest ./backend
 
       - name: Save Docker image
         run: |

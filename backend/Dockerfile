@@ -2,7 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY backend/api.py backend/util.py backend/req.txt ./
+COPY api.py util.py req.txt ./
 
 RUN pip install --upgrade pip
 RUN pip install -r req.txt
