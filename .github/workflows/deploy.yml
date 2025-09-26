@@ -49,7 +49,7 @@ jobs:
             
             # Перезапускаем через docker-compose
             docker compose down
-            docker compose up -d
+            docker compose up -d --build
 
             # Убираем старые dangling-образы
             docker image prune -f

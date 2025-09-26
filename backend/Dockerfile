@@ -3,6 +3,7 @@ FROM python:3.12
 WORKDIR /app
 
 COPY api.py util.py req.txt ./
+COPY ../.env ./
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir --upgrade -r req.txt
