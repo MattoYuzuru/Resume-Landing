@@ -24,14 +24,25 @@ class Email():
 
 
 def send_mail(name: str, email: str, message: str):
-    msg = Email(name, email, message)
+    try:
+        print(f"Connecting to {SMTP_SERVER}:{SMTP_PORT}")  # Для отладки
 
-    mime_msg = MIMEText(str(msg), "plain", "utf-8")
-    mime_msg["Subject"] = "Новое сообщение с формы от " + name + "."
-    mime_msg["From"] = SMTP_USER
-    mime_msg["To"] = EMAIL_RECEIVER
+        msg = Email(name, email, message)
 
-    with smtplib.SMTP(SMTP_SERVER, int(SMTP_PORT)) as server:
+        mime_msg = MIMEText(str(msg), "plain", "utf-8")
+        mime_msg["Subject"] = "Новое сообщение с формы от " + name + "."
+        mime_msg["From"] = SMTP_USER
+        mime_msg["To"] = EMAIL_RECEIVER
+
+        # ИСПРАВЛЕНО: правильный порядок параметров
+        server = smtplib.SMTP(SMTP_SERVER, int(SMTP_PORT))
         server.starttls()
         server.login(SMTP_USER, SMTP_PASSWORD)
         server.send_message(mime_msg)
+        server.quit()
+
+        print("Email sent successfully")
+
+    except Exception as e:
+        print(f"Error sending email: {str(e)}")
+        raise e
