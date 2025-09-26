@@ -31,7 +31,7 @@ def send_mail(name: str, email: str, message: str):
     mime_msg["From"] = SMTP_USER
     mime_msg["To"] = EMAIL_RECEIVER
 
-    with smtplib.SMTP(SMTP_SERVER, SMTP_PASSWORD) as server:
+    with smtplib.SMTP(SMTP_SERVER, int(SMTP_PORT)) as server:
         server.starttls()
         server.login(SMTP_USER, SMTP_PASSWORD)
         server.send_message(mime_msg)
