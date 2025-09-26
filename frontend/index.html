@@ -310,7 +310,7 @@
 
             <div class="contacts__content">
                 <div class="contacts__form-section">
-                    <form class="contacts__form" method="POST" action="/api/send-mail" enctype="multipart/form-data">
+                    <form class="contacts__form" id="contactForm">
                         <div class="contacts__field">
                             <label for="name" class="contacts__label">Имя</label>
                             <input type="text" id="name" name="name" class="contacts__input" placeholder="Ваше имя"
@@ -326,7 +326,8 @@
                         <div class="contacts__field">
                             <label for="message" class="contacts__label">Сообщение</label>
                             <textarea id="message" name="message" class="contacts__textarea"
-                                      placeholder="Если есть стажировка или интересный проект — пишите, буду рад стать частью команды" required></textarea>
+                                      placeholder="Если есть стажировка или интересный проект — пишите, буду рад стать частью команды"
+                                      required></textarea>
                         </div>
 
                         <button type="submit" class="contacts__submit">Отправить сообщение</button>
@@ -365,5 +366,48 @@
         </div>
     </div>
 </footer>
+
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const button = this.querySelector('.contacts__submit');
+        const originalText = button.textContent;
+        button.textContent = 'Отправляем...';
+        button.disabled = true;
+
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            const response = await fetch('/api/send-mail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                alert('Сообщение успешно отправлено!');
+                this.reset();
+            } else {
+                const error = await response.json();
+                alert('Ошибка отправки: ' + (error.detail || 'Неизвестная ошибка'));
+            }
+        } catch (error) {
+            alert('Ошибка сети. Попробуйте еще раз.');
+            console.error('Error:', error);
+        } finally {
+            button.textContent = originalText;
+            button.disabled = false;
+        }
+    });
+</script>
+
 </body>
 </html>
