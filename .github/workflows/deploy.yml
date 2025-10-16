@@ -23,6 +23,20 @@ jobs:
         run: |
           docker save landing:latest | gzip > landing.tar.gz
 
+      # 🧹 Очистка перед копированием
+      - name: Clean remote directory
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            echo "Cleaning old files..."
+            rm -rf /home/${{ secrets.SSH_USER }}/landing/frontend
+            rm -f /home/${{ secrets.SSH_USER }}/landing/docker-compose.yml
+            rm -rf /home/${{ secrets.SSH_USER }}/landing/backend
+
+      # 📤 Копирование
       - name: Copy files to server
         uses: appleboy/scp-action@v1
         with:
@@ -32,6 +46,7 @@ jobs:
           source: landing.tar.gz,docker-compose.yml,frontend,backend,images
           target: "/home/${{ secrets.SSH_USER }}/landing/"
 
+      # 🚀 Деплой
       - name: Deploy on server
         uses: appleboy/ssh-action@v0.1.5
         with:
@@ -44,16 +59,12 @@ jobs:
             # Загружаем образ
             docker load < landing.tar.gz
             
-            # Чистим старый тар
+            # Чистим старый архив
             rm landing.tar.gz
             
-            # Перезапускаем через docker-compose
+            # Перезапускаем контейнеры
             docker compose down
             docker compose up -d --build
 
-            # Убираем старые dangling-образы
-            docker image prune -f
-            
-            # Чистим память и логи
+            # Чистим старые образы и volume'ы
             docker system prune -a -f --volumes
-
