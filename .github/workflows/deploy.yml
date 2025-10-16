@@ -53,3 +53,8 @@ jobs:
 
             # Убираем старые dangling-образы
             docker image prune -f
+            
+            # Чистим память и логи
+            docker system prune -a -f --volumes
+            sudo journalctl --vacuum-time=3d
+
