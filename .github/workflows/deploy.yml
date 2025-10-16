@@ -56,5 +56,4 @@ jobs:
             
             # Чистим память и логи
             docker system prune -a -f --volumes
-            sudo journalctl --vacuum-time=3d
 
