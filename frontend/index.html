@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="Frontend/Backend разработчик с опытом создания масштабируемых веб-приложений. Специализация: React, Node.js, TypeScript">
     <title>Матвей Рябушкин - CV</title>
-    <link rel="icon" type="image/x-icon" href="/frontend/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- Прогресс чтения -->
+<div class="reading-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
 <header class="header">
     <div class="header__container">
         <div class="header__logo">
@@ -21,18 +24,27 @@
                 <span class="header__initials">MR</span>
             </div>
             <div class="header__info">
-                <div class="header__name">Матвей Рябушкин</div>
-                <div class="header__role">Backend / Frontend Developer</div>
+                <div class="header__name" data-i18n="header.name">Матвей Рябушкин</div>
+                <div class="header__role" data-i18n="header.role">Backend / Frontend Developer</div>
             </div>
         </div>
 
         <nav class="header__nav">
-            <a href="#hero" class="header__nav-link">Главная</a>
-            <a href="#skills" class="header__nav-link">Навыки</a>
-            <a href="#projects" class="header__nav-link">Проекты</a>
-            <a href="#experience" class="header__nav-link">Опыт</a>
-            <a href="#contacts" class="header__nav-link">Контакты</a>
-            <a href="#contacts" class="header__cta">Связаться</a>
+            <a href="#hero" class="header__nav-link" data-i18n="nav.home">Главная</a>
+            <a href="#skills" class="header__nav-link" data-i18n="nav.skills">Навыки</a>
+            <a href="#projects" class="header__nav-link" data-i18n="nav.projects">Проекты</a>
+            <a href="#experience" class="header__nav-link" data-i18n="nav.experience">Опыт</a>
+            <a href="#contacts" class="header__nav-link" data-i18n="nav.contacts">Контакты</a>
+
+            <!-- Переключатели темы и языка -->
+            <button class="header__theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="header__lang-toggle" id="langToggle" aria-label="Change language">
+                <span class="lang-text">EN</span>
+            </button>
+
+            <a href="#contacts" class="header__cta" data-i18n="nav.contact">Связаться</a>
         </nav>
     </div>
 </header>
@@ -42,14 +54,16 @@
     <section id="hero" class="hero">
         <div class="hero__container">
             <div class="hero__content">
-                <h1 class="hero__title">Создаю современные веб-приложения</h1>
-                <p class="hero__description">
+                <h1 class="hero__title" data-i18n="hero.title">Создаю современные веб-приложения</h1>
+                <p class="hero__description" data-i18n="hero.description">
                     Студент и backend-разработчик. Интересуюсь архитектурой сервисов,
                     базами данных и развиваюсь в написании чистого, понятного кода.
                 </p>
                 <div class="hero__actions">
-                    <a href="#contacts" class="hero__cta hero__cta--primary">Обсудить проект</a>
-                    <a href="#projects" class="hero__cta hero__cta--secondary">Посмотреть работы</a>
+                    <a href="#contacts" class="hero__cta hero__cta--primary" data-i18n="hero.discuss">Обсудить
+                        проект</a>
+                    <a href="#projects" class="hero__cta hero__cta--secondary" data-i18n="hero.viewWorks">Посмотреть
+                        работы</a>
                 </div>
             </div>
 
@@ -71,8 +85,8 @@
     <section id="skills" class="skills">
         <div class="skills__container">
             <div class="skills__header">
-                <h2 class="skills__title">Технические навыки</h2>
-                <p class="skills__subtitle">
+                <h2 class="skills__title" data-i18n="skills.title">Технические навыки</h2>
+                <p class="skills__subtitle" data-i18n="skills.subtitle">
                     Опыт работы с современным стеком технологий для разработки высоконагруженных приложений
                 </p>
             </div>
@@ -188,12 +202,67 @@
     <!-- Проекты -->
     <section id="projects" class="projects">
         <div class="projects__container">
-            <h2 class="projects__title">Проекты</h2>
+            <h2 class="projects__title" data-i18n="projects.title">Проекты</h2>
 
-            <div class="projects__grid">
-                <article class="projects__card">
+            <!-- Фильтры и поиск -->
+            <div class="projects__controls">
+                <div class="projects__search-wrapper">
+                    <input
+                            type="text"
+                            id="projectSearch"
+                            class="projects__search"
+                            placeholder="Поиск по названию или описанию..."
+                            data-i18n-placeholder="projects.searchPlaceholder"
+                            aria-label="Search projects">
+                </div>
+
+                <div class="projects__filters">
+                    <label class="projects__filter-label" data-i18n="projects.filterBy">Фильтр:</label>
+                    <div class="projects__filter-tags" id="projectTags">
+                        <button class="projects__tag projects__tag--active" data-tag="all" data-i18n="projects.all">
+                            Все
+                        </button>
+                        <button class="projects__tag" data-tag="web">Web</button>
+                        <button class="projects__tag" data-tag="backend">Backend</button>
+                        <button class="projects__tag" data-tag="fullstack">Fullstack</button>
+                        <button class="projects__tag" data-tag="data">Data Science</button>
+                    </div>
+                </div>
+
+                <div class="projects__sort">
+                    <label for="projectSort" class="projects__sort-label"
+                           data-i18n="projects.sortBy">Сортировка:</label>
+                    <select id="projectSort" class="projects__sort-select">
+                        <option value="default" data-i18n="projects.sortDefault">По умолчанию</option>
+                        <option value="name-asc" data-i18n="projects.sortNameAsc">По названию (А-Я)</option>
+                        <option value="name-desc" data-i18n="projects.sortNameDesc">По названию (Я-А)</option>
+                    </select>
+                </div>
+
+                <div class="projects__view-toggle">
+                    <button
+                            class="projects__view-btn projects__view-btn--active"
+                            data-view="grid"
+                            aria-label="Grid view"
+                            aria-pressed="true">
+                        <span class="view-icon">⊞</span>
+                    </button>
+                    <button
+                            class="projects__view-btn"
+                            data-view="list"
+                            aria-label="List view"
+                            aria-pressed="false">
+                        <span class="view-icon">☰</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="projects__grid" id="projectsContainer">
+                <article class="projects__card" data-tags="web,backend,fullstack"
+                         data-name="Видеоплатформа и социальная сеть">
                     <div class="projects__image">
-                        <div class="projects__placeholder">MyTube</div>
+                        <img src="images/mytube.png" alt="Скриншот авторизации из MyTube" class="projects__img">
+                        <span class="projects__placeholder">Скриншоты отсутствуют</span>
                     </div>
                     <div class="projects__content">
                         <h3 class="projects__name">Видеоплатформа и социальная сеть</h3>
@@ -206,9 +275,10 @@
                     </div>
                 </article>
 
-                <article class="projects__card">
+                <article class="projects__card" data-tags="web,fullstack" data-name="Блог">
                     <div class="projects__image">
-                        <div class="projects__placeholder">KeykoMi Lib</div>
+                        <img src="images/blog.png" alt="Пустой блог KeykoMi Lib" class="projects__img">
+                        <span class="projects__placeholder">Скриншоты отсутствуют</span>
                     </div>
                     <div class="projects__content">
                         <h3 class="projects__name">Блог</h3>
@@ -221,7 +291,7 @@
                     </div>
                 </article>
 
-                <article class="projects__card">
+                <article class="projects__card" data-tags="backend" data-name="Новостной агрегатор на чистой Джаве">
                     <div class="projects__image">
                         <div class="projects__placeholder">News Aggregator</div>
                     </div>
@@ -236,9 +306,9 @@
                     </div>
                 </article>
 
-                <article class="projects__card">
+                <article class="projects__card" data-tags="data" data-name="Факторы успеваемости студентов">
                     <div class="projects__image">
-                        <div class="projects__placeholder">Student Performance Factors Analysis</div>
+                        <span class="projects__placeholder">Student Performance Factors Analysis</span>
                     </div>
                     <div class="projects__content">
                         <h3 class="projects__name">Факторы успеваемости студентов</h3>
@@ -253,13 +323,17 @@
                     </div>
                 </article>
             </div>
+
+            <div class="projects__empty" id="emptyState" style="display: none;">
+                <p data-i18n="projects.noResults">Проекты не найдены. Попробуйте изменить критерии поиска.</p>
+            </div>
         </div>
     </section>
 
     <!-- Таймлайн опыта -->
     <section id="experience" class="experience">
         <div class="experience__container">
-            <h2 class="experience__title">Опыт</h2>
+            <h2 class="experience__title" data-i18n="experience.title">Опыт</h2>
 
             <div class="experience__timeline">
                 <div class="experience__item">
@@ -286,8 +360,8 @@
                     <div class="experience__content">
                         <h3 class="experience__company">Java Backend Developer — Учебная практика от Т-Банка</h3>
                         <p class="experience__description">
-                            Создание продукта с нуля. Проектирование архитектуры,
-                            разработка главных backend компонентов продукта.
+                            Создание продукта с нуля. Проектирование архитектуры, разработка главных backend компонентов
+                            продукта.
                         </p>
                         <div class="experience__achievements">
                             <div class="experience__achievement">Общался с фронтенд-разработчиками и помогал
@@ -306,37 +380,66 @@
     <!-- Контакты -->
     <section id="contacts" class="contacts">
         <div class="contacts__container">
-            <h2 class="contacts__title">Контакты</h2>
+            <h2 class="contacts__title" data-i18n="contacts.title">Контакты</h2>
 
             <div class="contacts__content">
                 <div class="contacts__form-section">
                     <form class="contacts__form" id="contactForm">
                         <div class="contacts__field">
-                            <label for="name" class="contacts__label">Имя</label>
-                            <input type="text" id="name" name="name" class="contacts__input" placeholder="Ваше имя"
-                                   required>
+                            <label for="name" class="contacts__label" data-i18n="contacts.name">Имя</label>
+                            <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="contacts__input"
+                                    placeholder="Ваше имя"
+                                    data-i18n-placeholder="contacts.namePlaceholder"
+                                    required
+                                    minlength="2"
+                                    aria-required="true"
+                                    aria-describedby="nameError">
+                            <span class="contacts__error" id="nameError" role="alert" aria-live="polite"></span>
                         </div>
 
                         <div class="contacts__field">
-                            <label for="email" class="contacts__label">Email</label>
-                            <input type="email" id="email" name="email" class="contacts__input"
-                                   placeholder="email@example.com" required>
+                            <label for="email" class="contacts__label" data-i18n="contacts.email">Email</label>
+                            <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="contacts__input"
+                                    placeholder="email@example.com"
+                                    required
+                                    aria-required="true"
+                                    aria-describedby="emailError">
+                            <span class="contacts__error" id="emailError" role="alert" aria-live="polite"></span>
                         </div>
 
                         <div class="contacts__field">
-                            <label for="message" class="contacts__label">Сообщение</label>
-                            <textarea id="message" name="message" class="contacts__textarea"
-                                      placeholder="Если есть стажировка или интересный проект — пишите, буду рад стать частью команды"
-                                      required></textarea>
+                            <label for="message" class="contacts__label" data-i18n="contacts.message">Сообщение</label>
+                            <textarea
+                                    id="message"
+                                    name="message"
+                                    class="contacts__textarea"
+                                    placeholder="Если есть стажировка или интересный проект — пишите, буду рад стать частью команды"
+                                    data-i18n-placeholder="contacts.messagePlaceholder"
+                                    required
+                                    minlength="10"
+                                    aria-required="true"
+                                    aria-describedby="messageError"></textarea>
+                            <span class="contacts__error" id="messageError" role="alert" aria-live="polite"></span>
                         </div>
 
-                        <button type="submit" class="contacts__submit">Отправить сообщение</button>
+                        <div class="contacts__status" id="formStatus" role="status" aria-live="polite"></div>
+
+                        <button type="submit" class="contacts__submit" data-i18n="contacts.submit">Отправить сообщение
+                        </button>
                     </form>
                 </div>
 
                 <div class="contacts__info">
                     <div class="contacts__card">
-                        <h3 class="contacts__card-title">Прямая связь</h3>
+                        <h3 class="contacts__card-title" data-i18n="contacts.directContact">Прямая связь</h3>
                         <div class="contacts__links">
                             <a href="mailto:matvei.riabushkin@yandex.ru" class="contacts__link">
                                 <span class="contacts__link-text">matvei.riabushkin@yandex.ru</span>
@@ -348,9 +451,9 @@
                                 <span class="contacts__link-text">Telegram</span>
                             </a>
                         </div>
-                        <div class="contacts__note">
-                            Буду рад откликнуться на стажировки или предложения для начинающих разработчиков.
-                            Стараюсь отвечать быстро.
+                        <div class="contacts__note" data-i18n="contacts.note">
+                            Буду рад откликнуться на стажировки или предложения для начинающих разработчиков. Стараюсь
+                            отвечать быстро.
                         </div>
                     </div>
                 </div>
@@ -363,51 +466,14 @@
     <div class="footer__container">
         <div class="footer__content">
             <span class="footer__copyright">© 2025 Матвей Рябушкин</span>
+            <span style="margin-left: 1rem;">
+                <a href="robots.txt" class="footer__link">robots.txt</a> |
+                <a href="llm.txt" class="footer__link">llm.txt</a>
+            </span>
         </div>
     </div>
 </footer>
 
-
-<script>
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        const button = this.querySelector('.contacts__submit');
-        const originalText = button.textContent;
-        button.textContent = 'Отправляем...';
-        button.disabled = true;
-
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            message: document.getElementById('message').value
-        };
-
-        try {
-            const response = await fetch('/api/send-mail', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-                alert('Сообщение успешно отправлено!');
-                this.reset();
-            } else {
-                const error = await response.json();
-                alert('Ошибка отправки: ' + (error.detail || 'Неизвестная ошибка'));
-            }
-        } catch (error) {
-            alert('Ошибка сети. Попробуйте еще раз.');
-            console.error('Error:', error);
-        } finally {
-            button.textContent = originalText;
-            button.disabled = false;
-        }
-    });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
